@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EBD3BF">
+  <meta name="description" content="花屿 Onbloom Island 的漫画《一朵跟着走的花》：向野和伙伴们想在阿驮背上种一朵花，让它跟着一起旅行。一个愿望，三道难关。">
+  <title>一朵跟着走的花 · 花屿</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="comic.css">
+  <script src="../motion.js" defer></script>
+  <script src="comic.js" defer></script>
+</head>
+<body style="--bg: #EBD3BF">
+<a class="skip-link" href="#page-1">跳到正文</a>
+
+<!-- Island mark: an island rising from a wave line, with a sprout that ends in a bud. Strokes draw in order. -->
+<svg class="defs" width="0" height="0" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 40">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6">
+      <path d="M2 34C8 31 12 31 18 34S28 37 34 34 44 31 50 34 58 37 62 34" pathLength="1" style="transition-delay:0s"/>
+      <path d="M12 31C16 22 24 18 32 18S48 22 52 31" pathLength="1" style="transition-delay:.3s"/>
+      <path d="M32 18V8" pathLength="1" style="transition-delay:.6s"/>
+      <path d="M32 14C28 14 25.5 11.5 25.5 8C29 8 32 10.5 32 14" pathLength="1" style="transition-delay:.75s"/>
+    </g>
+    <g class="bud" style="fill:var(--accent)">
+      <circle cx="32" cy="3.2" r="1.7"/><circle cx="33.9" cy="4.6" r="1.7"/><circle cx="33.2" cy="6.8" r="1.7"/>
+      <circle cx="30.8" cy="6.8" r="1.7"/><circle cx="30.1" cy="4.6" r="1.7"/>
+      <circle cx="32" cy="5.2" r=".9" style="fill:var(--flesh)"/>
+    </g>
+  </symbol>
+  <!-- 花屿 lettering: 艹 grows a leaf, the hook of 匕 ends in a bud, the base of 山 is a wave. -->
+  <symbol id="huayu" viewBox="-4 0 218 100">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.6">
+      <path d="M8 24H92" pathLength="1" style="transition-delay:0.00s"/>
+      <path d="M32 9V37" pathLength="1" style="transition-delay:0.08s"/>
+      <path d="M68 9V37" pathLength="1" style="transition-delay:0.16s"/>
+      <path d="M68 17C71 10 77 7 84 8C82 14 75 18 68 17" pathLength="1" style="transition-delay:0.24s"/>
+      <path d="M40 43C34 55 26 63 12 71" pathLength="1" style="transition-delay:0.32s"/>
+      <path d="M28 59V94" pathLength="1" style="transition-delay:0.40s"/>
+      <path d="M84 47C74 55 64 61 50 65" pathLength="1" style="transition-delay:0.48s"/>
+      <path d="M58 41V80C58 88 62 91 70 91H82C88 91 91 88 91 81" pathLength="1" style="transition-delay:0.56s"/>
+      <path d="M132 32V82" pathLength="1" style="transition-delay:0.64s"/>
+      <path d="M117 52V82" pathLength="1" style="transition-delay:0.72s"/>
+      <path d="M147 52V80" pathLength="1" style="transition-delay:0.80s"/>
+      <path d="M114 85C120 81 124 81 130 85S140 89 146 85 154 81 157 84" pathLength="1" style="transition-delay:0.88s"/>
+      <path d="M168 22H205" pathLength="1" style="transition-delay:0.96s"/>
+      <path d="M168 22V50H201C201 67 199 81 192 91L185 87" pathLength="1" style="transition-delay:1.04s"/>
+      <path d="M158 70H212" pathLength="1" style="transition-delay:1.12s"/>
+    </g>
+    <g class="bud" style="fill:var(--bud)">
+      <circle cx="91" cy="70" r="3.4"/><circle cx="94.8" cy="72.8" r="3.4"/><circle cx="93.4" cy="77.2" r="3.4"/>
+      <circle cx="88.6" cy="77.2" r="3.4"/><circle cx="87.2" cy="72.8" r="3.4"/>
+      <circle cx="91" cy="74.4" r="1.8" style="fill:var(--flesh)"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <a class="wordmark" href="../#/topics" aria-label="花屿 Onbloom Island · 回到首页"><svg class="logo-huayu" viewBox="-4 0 218 100" role="img" aria-label="花屿"><use href="#huayu"/></svg><span class="wordmark-text">Onbloom Island</span></a>
+  <nav class="main-nav" aria-label="主导航">
+    <a href="../#/ai">编年史</a>
+    <a href="../#/library">书架</a>
+    <a href="../#/prompts">提示词</a>
+    <a href="../#/together">共学</a>
+    <a href="../#/notes">我的</a>
+  </nav>
+</header>
+
+<nav class="side-dots" id="side-dots" aria-label="章节"></nav>
+
+<main>
+  <section class="cover tex-flesh" id="cover" data-bg="#EBD3BF" data-theme="light" data-dot="封面" data-parallax>
+    <figure class="cover-photo"><img src="assets/scroll-remix/panels/cover.jpg" width="1024" height="1536" alt="河岸上，向野、旅人和炉跟着阿驮往前走，阿驮背着卷轴匣，拾叼着一张画飞在前面" fetchpriority="high"></figure>
+    <h1 class="cover-title" aria-label="一朵跟着走的花">
+      <svg class="mark mark--draw cover-mark" viewBox="0 0 64 40" aria-hidden="true" data-reveal><use href="#mark"/></svg>
+      <span class="display cover-words lines" aria-hidden="true"><span class="line"><span>一朵</span></span><span class="line"><span>跟着走的花<em class="dot">。</em></span></span></span>
+    </h1>
+    <p class="cover-caption c1" data-reveal style="--d:3"><span class="u-link">一个愿望，三道难关</span></p>
+    <div class="cover-actions" data-reveal style="--d:5">
+      <a class="link-big" href="#page-1" data-cursor="开始读">开始读<span class="dot">↓</span></a>
+      <a class="u-link cover-small" href="#afterword">先看：这个故事和花屿</a>
+    </div>
+  </section>
+
+  <div class="story" id="story" aria-busy="true">
+    <p class="loading-note" role="status">正在翻开故事……</p>
+  </div>
+
+  <section class="afterword tex-blue cut" id="afterword" data-bg="#CBDBEA" data-theme="light" data-dot="附页">
+    <div class="afterword-inner">
+      <h2 class="display afterword-title lines"><span class="line"><span>这个故事</span></span><span class="line"><span>和这座岛<em class="dot">。</em></span></span></h2>
+      <p class="lead afterword-lead" data-reveal>花屿是以 AI 为起点，连接商业、营销和艺术的知识库与共学社区。我们做三件事：读好书并讲清楚，亲手试并记下结果，把 AI 一路发生的事一篇篇记下来。故事里的东西，在网站上都有对应。</p>
+      <ol class="map-list">
+        <li data-reveal><a href="../#/ai" data-cursor="去看"><span class="story-side">阿驮背上的长卷</span><span class="site-side"><b>AI 编年史</b><small>从 2017 年写起，有新的转折就续一篇</small></span><i aria-hidden="true">↗</i></a></li>
+        <li data-reveal><a href="../#/library" data-cursor="去看"><span class="story-side">卷上的旧图</span><span class="site-side"><b>书架</b><small>每本书一张卡，能免费读的点开就读</small></span><i aria-hidden="true">↗</i></a></li>
+        <li data-reveal><a href="../#/prompts" data-cursor="去看"><span class="story-side">托座那张画</span><span class="site-side"><b>提示词</b><small>拿去就能试的方法</small></span><i aria-hidden="true">↗</i></a></li>
+        <li data-reveal><a href="../#/topic/trial" data-cursor="去看"><span class="story-side">炉的裂杯</span><span class="site-side"><b>试作记录</b><small>试过什么，裂在哪里，每个专题里都有</small></span><i aria-hidden="true">↗</i></a></li>
+        <li data-reveal><a href="../#/together" data-cursor="去看"><span class="story-side">围着炉火</span><span class="site-side"><b>共学</b><small>带上你的问题和反例</small></span><i aria-hidden="true">↗</i></a></li>
+        <li data-reveal><a href="../#/notes" data-cursor="去看"><span class="story-side">向野的笔记本</span><span class="site-side"><b>我的</b><small>记下你自己的那一行</small></span><i aria-hidden="true">↗</i></a></li>
+      </ol>
+      <div class="afterword-actions" data-reveal>
+        <a class="btn btn--solid" href="../#/ai">读 AI 编年史 <span class="arrow">↗</span></a>
+        <a class="btn" href="../#/search">搜索资料和模板 <span class="arrow">↗</span></a>
+      </div>
+      <p class="afterword-note muted" data-reveal>拾、炉、阿驮是栏目的编辑人格，不是 AI 助手。</p>
+    </div>
+  </section>
+
+  <section class="closing tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+    <p class="closing-words display lines">
+      <span class="line"><span>花开在背上，</span></span>
+      <span class="line"><span>路还很长，</span></span>
+      <span class="line"><span>我们慢慢走<em class="dot">。</em></span></span>
+    </p>
+    <a class="link-big closing-link" href="../#/library" data-cursor="进入" data-reveal>去书架<span class="dot">↗</span></a>
+  </section>
+</main>
+
+<footer class="site-footer tex-blue cut">
+  <div class="footer-main">
+    <!-- The closing lines sit just above, so the footer only signs the letter. -->
+    <div class="footer-letter">
+      <a class="wordmark wordmark--big footer-sign" href="../#/topics" aria-label="花屿 Onbloom Island · 回到首页"><svg class="logo-huayu mark--draw" viewBox="-4 0 218 100" role="img" aria-label="花屿" data-reveal><use href="#huayu"/></svg><span class="wordmark-text">Onbloom Island</span></a>
+    </div>
+    <div class="footer-side">
+      <p class="footer-ps"><span>附</span><a class="link-big footer-cta" href="#page-1" data-cursor="从头读">从头再读<span class="dot">↑</span></a></p>
+      <nav class="footer-nav" aria-label="页脚导航">
+        <a href="../#/ai">编年史</a><a href="../#/library">书架</a><a href="../#/prompts">提示词</a>
+        <a href="../#/together">共学</a><a href="../#/notes">我的</a><a href="#afterword">这个故事</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<div class="legal-bar">
+  <span>© 2026 花屿 Onbloom Island</span>
+  <a href="../#/legal">隐私说明</a>
+  <a href="../#/legal">使用条款</a>
+  <a href="../#/legal">来源与版权</a>
+  <a class="end" href="#cover">回到开头 ↑</a>
+</div>
+</body>
+</html>

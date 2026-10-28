@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EBD3BF">
+  <meta name="description" content="花屿 Onbloom Island：以 AI 为起点，连接商业、营销和艺术的知识库与共学社区。我们把分散的 AI 资料和实践经验，整理成面对具体问题时能读懂、能判断、能拿去用的内容。">
+  <title>花屿 Onbloom Island · 以 AI 为起点的知识库与共学社区</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" as="image" href="assets/photos/v2/home-cover.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="motion.js" defer></script>
+  <script src="chronicle.js" defer></script>
+  <script src="books.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body style="--bg: #EBD3BF" data-view="topics">
+<a class="skip-link" href="#main">跳到正文</a>
+
+<!-- Island mark: an island rising from a wave line, with a sprout that ends in a bud. Strokes draw in order. -->
+<svg class="defs" width="0" height="0" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 40">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6">
+      <path d="M2 34C8 31 12 31 18 34S28 37 34 34 44 31 50 34 58 37 62 34" pathLength="1" style="transition-delay:0s"/>
+      <path d="M12 31C16 22 24 18 32 18S48 22 52 31" pathLength="1" style="transition-delay:.3s"/>
+      <path d="M32 18V8" pathLength="1" style="transition-delay:.6s"/>
+      <path d="M32 14C28 14 25.5 11.5 25.5 8C29 8 32 10.5 32 14" pathLength="1" style="transition-delay:.75s"/>
+    </g>
+    <g class="bud" style="fill:var(--accent)">
+      <circle cx="32" cy="3.2" r="1.7"/><circle cx="33.9" cy="4.6" r="1.7"/><circle cx="33.2" cy="6.8" r="1.7"/>
+      <circle cx="30.8" cy="6.8" r="1.7"/><circle cx="30.1" cy="4.6" r="1.7"/>
+      <circle cx="32" cy="5.2" r=".9" style="fill:var(--flesh)"/>
+    </g>
+  </symbol>
+  <!-- 花屿 lettering: 艹 grows a leaf, the hook of 匕 ends in a bud, the base of 山 is a wave. -->
+  <symbol id="huayu" viewBox="-4 0 218 100">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.6">
+      <path d="M8 24H92" pathLength="1" style="transition-delay:0.00s"/>
+      <path d="M32 9V37" pathLength="1" style="transition-delay:0.08s"/>
+      <path d="M68 9V37" pathLength="1" style="transition-delay:0.16s"/>
+      <path d="M68 17C71 10 77 7 84 8C82 14 75 18 68 17" pathLength="1" style="transition-delay:0.24s"/>
+      <path d="M40 43C34 55 26 63 12 71" pathLength="1" style="transition-delay:0.32s"/>
+      <path d="M28 59V94" pathLength="1" style="transition-delay:0.40s"/>
+      <path d="M84 47C74 55 64 61 50 65" pathLength="1" style="transition-delay:0.48s"/>
+      <path d="M58 41V80C58 88 62 91 70 91H82C88 91 91 88 91 81" pathLength="1" style="transition-delay:0.56s"/>
+      <path d="M132 32V82" pathLength="1" style="transition-delay:0.64s"/>
+      <path d="M117 52V82" pathLength="1" style="transition-delay:0.72s"/>
+      <path d="M147 52V80" pathLength="1" style="transition-delay:0.80s"/>
+      <path d="M114 85C120 81 124 81 130 85S140 89 146 85 154 81 157 84" pathLength="1" style="transition-delay:0.88s"/>
+      <path d="M168 22H205" pathLength="1" style="transition-delay:0.96s"/>
+      <path d="M168 22V50H201C201 67 199 81 192 91L185 87" pathLength="1" style="transition-delay:1.04s"/>
+      <path d="M158 70H212" pathLength="1" style="transition-delay:1.12s"/>
+    </g>
+    <g class="bud" style="fill:var(--bud)">
+      <circle cx="91" cy="70" r="3.4"/><circle cx="94.8" cy="72.8" r="3.4"/><circle cx="93.4" cy="77.2" r="3.4"/>
+      <circle cx="88.6" cy="77.2" r="3.4"/><circle cx="87.2" cy="72.8" r="3.4"/>
+      <circle cx="91" cy="74.4" r="1.8" style="fill:var(--flesh)"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <a class="wordmark" href="#/topics" aria-label="花屿 Onbloom Island · 首页"><svg class="logo-huayu" viewBox="-4 0 218 100" role="img" aria-label="花屿"><use href="#huayu"/></svg><span class="wordmark-text">Onbloom Island</span></a>
+  <nav class="main-nav" aria-label="主导航">
+    <a href="#/ai" data-nav="ai">编年史</a>
+    <a href="#/library" data-nav="library">书架</a>
+    <a href="#/prompts" data-nav="prompts">提示词</a>
+    <a href="#/together" data-nav="together">共学</a>
+    <a href="resume-method/">简历</a>
+    <a href="#/notes" data-nav="notes">我的<span class="count" id="savedCount" aria-label="已收藏 0 条">0</span></a>
+    <a class="search-btn" href="#/search" aria-label="搜索资料和模板，快捷键是斜杠">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg><span>搜索</span>
+    </a>
+  </nav>
+</header>
+
+<nav class="side-dots" aria-label="首页段落">
+  <a href="#hero"><i></i><span>开始</span></a>
+  <a href="#about"><i></i><span>做什么</span></a>
+  <a href="#make"><i></i><span>成片</span></a>
+  <a href="#editors"><i></i><span>编辑</span></a>
+  <a href="#comic"><i></i><span>漫画</span></a>
+  <a href="#chronicle"><i></i><span>编年史</span></a>
+</nav>
+
+<main id="main" tabindex="-1">
+
+  <!-- ===== 首页 ===== -->
+  <div class="view" id="view-topics" data-view-name="topics">
+
+    <section class="hero tex-flesh" id="hero" data-bg="#EBD3BF" data-theme="light" data-dot="开始" data-parallax>
+      <figure class="hero-photo">
+        <img src="assets/photos/v2/home-cover.jpg" width="1672" height="941" alt="海边的山坡上，老农和向野展开一卷画着托座的旧图，海边旅人和炉扶着托座里开了花的锔杯，拾停在炉头上，阿驮背着卷轴匣在后面看着" fetchpriority="high">
+      </figure>
+      <p class="hero-letter" data-reveal="slant">献给把经验留在卷上的人，<br><span>也献给带着新问题赶来的人。</span></p>
+      <!-- The painting is full of faces, so the title rides a slanted paper band over its foreground. -->
+      <div class="hero-band tex-flesh" data-hint-host>
+        <h1 class="hero-title display lines" aria-label="用智慧，开创无限可能。">
+          <span class="line"><span>用智慧，</span></span>
+          <span class="line l2"><span>开创无限可能<em class="dot">。</em></span></span>
+        </h1>
+        <div class="hero-side">
+          <p class="hero-hint hint"><b>把 AI 用明白。</b>花屿是以 AI 为起点，连接商业、营销和艺术的知识库与共学社区。</p>
+          <div class="hero-actions" data-reveal="slant" style="--d:6">
+            <a class="btn btn--solid" href="#about">看看岛上有什么 <span class="arrow" aria-hidden="true">↘</span></a>
+            <a class="btn btn--glass" href="#/search">搜索 <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What we do: three habits, said plainly. -->
+    <section class="about tex-blue cut" id="about" data-bg="#CBDBEA" data-theme="light" data-dot="做什么" data-parallax>
+      <div class="about-head">
+        <h2 class="display section-title lines"><span class="line"><span>这座岛上，</span></span><span class="line"><span>我们做三件事<em class="dot">。</em></span></span></h2>
+        <div class="about-text">
+          <p class="about-statement" data-reveal>以 AI 为起点，连接商业、营销和艺术：把书和资料读懂，把方法亲手试过，把 AI 一路发生的事一篇篇记下来。</p>
+        </div>
+      </div>
+      <ol class="work-lines" aria-label="我们做三件事">
+        <li data-reveal="slant" data-hint-host><a href="#/library" data-cursor="书架"><i class="n latin">01</i><span class="big">读好书，讲清楚<em class="dot">。</em></span><span class="work-detail"><span class="hint">书架上每本书一张卡：为什么值得读，去哪里合法地读，还有我们做的导图、学习卡片和分析。</span></span></a></li>
+        <li data-reveal="slant" style="--d:1" data-hint-host><a href="#make" data-cursor="成片"><i class="n latin">02</i><span class="big">亲手试，记下来<em class="dot">。</em></span><span class="work-detail"><span class="hint">提示词拿去真的做一遍，成片和提示词放在一起，哪里不行也照实写。</span></span></a></li>
+        <li data-reveal="slant" style="--d:2" data-hint-host><a href="#chronicle" data-cursor="编年史"><i class="n latin">03</i><span class="big">跟着变，接着写<em class="dot">。</em></span><span class="work-detail"><span class="hint">AI 编年史从 2017 年写起，有新的转折就续一篇。旧的判断留着，新发现接在后面。</span></span></a></li>
+      </ol>
+    </section>
+
+    <!-- One question, two boxes: the finished short and the prompt that makes it. The title sits on the right. -->
+    <section class="make tex-flesh cut-r" id="make" data-bg="#EBD3BF" data-theme="light" data-dot="成片">
+      <div class="section-head section-head--right">
+        <h2 class="display section-title lines"><span class="line"><span>从一个问题</span></span><span class="line"><span>开始<em class="dot">。</em></span></span></h2>
+      </div>
+      <div class="make-grid">
+        <figure class="make-box make-film" data-reveal="slant">
+          <figcaption class="make-label">成片</figcaption>
+          <div class="film-frame">
+            <img src="assets/photos/v2/home-cover.jpg" width="1672" height="941" alt="" loading="lazy">
+            <span class="film-state">15 秒 · 制作中</span>
+          </div>
+        </figure>
+        <article class="make-box make-prompt" data-reveal="slant" style="--d:1">
+          <h3 class="make-label">提示词</h3>
+          <pre class="make-text" id="filmPrompt">《旧图 · 新花》15 秒短片
+
+画风：和花屿首页画卷图一致的暖色手绘动画，水彩和铅笔质感。清晨的海边山坡，金色侧光，镜头缓慢平稳。
+
+角色：
+· 向野：十二三岁的少年，深色卷发，芥末黄外套，米色围巾，背着行囊。
+· 阿驮：巨大温和的老陆龟，背上用皮带绑着一只低矮的木卷轴匣，匣口露出几卷长卷。
+· 炉：橘红陶土做的圆胖小兽，肚子上有个小口，里面亮着一团火光。
+· 拾：白色带蓝羽的小海鸟。
+
+分镜：
+0–3 秒：阿驮在海边山坡上停下。向野从卷轴匣里抽出一卷旧长卷展开，一格格小画里，画着一只木托座稳稳托住一只杯子。
+3–7 秒：炉捧着一只有裂纹、钉着三颗锔钉的奶白小陶杯，照着画把它放进木托座。拾落在托座横梁上，歪头看。
+7–11 秒：一阵海风吹来，托座轻轻一晃。大家合力把它转到向着太阳的一边，杯里的嫩芽慢慢抬头，开出一朵小花。
+11–15 秒：向野在长卷末尾的空白格里，用炭笔画下这朵花（只画图，不写字），卷好放回匣中。一行人沿着海边小路继续往前走，镜头拉远，看见大海和远山。
+
+声音：海浪、风声、陶杯轻碰木头，结尾一声轻快的木琴。没有对白，没有旁白。
+不要：画面里出现任何文字、字母、数字、标志、水印；角色变形、多出手指。
+画幅：16:9，1080p。</pre>
+          <button type="button" class="btn btn--solid" data-copy="filmPrompt">复制提示词 <span class="arrow" aria-hidden="true">↗</span></button>
+        </article>
+      </div>
+    </section>
+
+    <!-- The three editors, each with the job they actually do on the site. The title sits on the right. -->
+    <section class="editors tex-blue cut" id="editors" data-bg="#CBDBEA" data-theme="light" data-dot="编辑">
+      <div class="section-head section-head--right" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>一路同行的</span></span><span class="line"><span>三位编辑<em class="dot">。</em></span></span></h2>
+        <div class="section-side">
+          <p class="section-lead hint">他们是栏目的编辑人格，负责署名和导览，不是 AI 助手。</p>
+        </div>
+      </div>
+      <div class="editor-grid">
+        <article class="editor" data-reveal="slant">
+          <figure class="editor-art"><img src="assets/characters/shi.webp" width="203" height="222" alt="拾：一只白蓝色的海鸟" loading="lazy"></figure>
+          <h3>拾<span class="editor-job">找资料的人</span></h3>
+          <p class="editor-duty">书架上每一本书、编年史每一篇的出处，都由拾去找：原文在哪里，能不能合法地免费读，作者是谁。找不到出处的，不上架。</p>
+          <blockquote>“这张找不到是谁画的。先留着——待查。”</blockquote>
+          <a class="u-link" href="#/library">去书架 ↗</a>
+        </article>
+        <article class="editor" data-reveal="slant" style="--d:1">
+          <figure class="editor-art"><img src="assets/characters/lu.webp" width="225" height="236" alt="炉：肚子里有一团火的小陶兽" loading="lazy"></figure>
+          <h3>炉<span class="editor-job">动手试的人</span></h3>
+          <p class="editor-duty">提示词由炉拿去真的做一遍：用了哪个工具、什么素材、做出了什么、哪里不行，都照实记下。首页那条 15 秒成片，就是炉的试作。</p>
+          <blockquote>“停下来能挡风，转弯时却会碰上。”</blockquote>
+          <a class="u-link" href="#make">看成片 ↗</a>
+        </article>
+        <article class="editor" data-reveal="slant" style="--d:2">
+          <figure class="editor-art editor-art--shell"><img src="assets/characters/atuo-shell.png" width="630" height="436" alt="阿驮：背着长卷赶路的老龟" loading="lazy"></figure>
+          <h3>阿驮<span class="editor-job">记下来的人</span></h3>
+          <p class="editor-duty">AI 编年史由阿驮背着往后写：有新的转折就续一篇。旧的判断不删，改了哪里、为什么改，写在后面。</p>
+          <blockquote>“新的这篇写好了，旧的那篇也留着。”</blockquote>
+          <a class="u-link" href="#chronicle">看编年史 ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- The comic: painting on the left, words on the right. -->
+    <section class="comic-block comic-block--flip tex-flesh cut-r" id="comic" data-bg="#EBD3BF" data-theme="light" data-dot="漫画">
+      <div class="comic-copy">
+        <svg class="mark mark--draw comic-mark" viewBox="0 0 64 40" aria-hidden="true" data-reveal><use href="#mark"/></svg>
+        <h2 class="display comic-title lines" aria-label="漫画《一朵跟着走的花》"><span class="line"><span>一朵</span></span><span class="line"><span>跟着走的花<em class="dot">。</em></span></span></h2>
+        <p class="comic-lead" data-reveal style="--d:1">向野和伙伴们想在阿驮背上种一朵花，让它跟着一起旅行。风、转弯和不开花，是一路上的三道难关。</p>
+        <a class="link-big" href="comic-v3/" data-cursor="读漫画" data-reveal style="--d:2">读漫画<span class="dot">↗</span></a>
+      </div>
+      <a class="comic-panel" href="comic-v3/" data-cursor="读漫画" data-reveal="slant" style="--d:2" data-parallax aria-label="打开漫画《一朵跟着走的花》">
+        <span class="panel-frame">
+          <img src="assets/photos/cliff.jpg" width="1672" height="941" alt="" loading="lazy">
+          <span class="bubble" aria-hidden="true">我们能不能种一朵真的，让它也跟着走？</span>
+        </span>
+      </a>
+    </section>
+
+    <section class="band band--meadow band--right cut" id="band-carve" data-bg="#EBD3BF" data-theme="light" data-parallax>
+      <figure class="band-photo"><img src="assets/photos/meadow.jpg" width="1672" height="941" alt="草原上，阿驮往山里走，背上的陶杯里开出一朵花" loading="lazy"></figure>
+      <h2 class="band-words display"><span class="w1">卷中有旧痕，</span><span class="w2">笔下是新花<em class="dot">。</em></span></h2>
+    </section>
+
+    <!-- AI chronicle: one line per turning point, alternating either side of a spine; each opens its own page. -->
+    <section class="chronicle tex-flesh cut-r" id="chronicle" data-bg="#EBD3BF" data-theme="light" data-dot="编年史">
+      <div class="section-head" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>AI 编年史，</span></span><span class="line"><span>从一篇论文写起<em class="dot">。</em></span></span></h2>
+        <div class="section-side">
+          <p class="section-lead hint">从 2017 年的《Attention Is All You Need》开始，每件改变 AI 走向的事单开一页：发生了什么，为什么重要，对我们有什么用。</p>
+        </div>
+      </div>
+      <ol class="chron-list" id="chronList" aria-label="AI 编年史"></ol>
+    </section>
+  </div>
+
+  <!-- ===== AI 编年史 · 单篇 ===== -->
+  <div class="view inner" id="view-ai" data-view-name="ai" hidden>
+    <section class="inner-head chron-head tex-blue" id="chronHead" data-bg="#CBDBEA" data-theme="light" data-parallax></section>
+    <section class="inner-body chron-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <article class="chron-article" id="chronArticle"></article>
+    </section>
+  </div>
+
+  <!-- ===== 书架 ===== -->
+  <div class="view inner" id="view-library" data-view-name="library" hidden>
+    <section class="inner-head inner-head--right tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>一本一本，</span></span><span class="line l2"><span>读到最后一页<em class="dot">。</em></span></span></h1>
+      <p class="inner-lead hint">每本书一张卡：为什么值得读，去哪里合法地读，谁在读，还有我们做的导图、卡片和分析。</p>
+      <figure class="inner-photo"><img src="assets/photos/cliff.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="shelf-free tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <div class="section-head" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>先读这几本，</span></span><span class="line"><span>整本免费<em class="dot">。</em></span></span></h2>
+        <div class="section-side"><p class="section-lead hint">点开就能读完整本。链接都来自作者或出版方，不放来路不明的文件。</p></div>
+      </div>
+      <div class="book-row book-row--free" id="freeBooks"></div>
+    </section>
+    <section class="shelf-parts tex-blue cut" data-bg="#CBDBEA" data-theme="light">
+      <nav class="part-nav" id="partNav" aria-label="书架分区"></nav>
+      <div id="bookParts"></div>
+    </section>
+    <section class="shelf-people tex-flesh cut-r" id="people" data-bg="#EBD3BF" data-theme="light">
+      <div class="section-head section-head--right" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>每人</span></span><span class="line"><span>一格<em class="dot">。</em></span></span></h2>
+        <div class="section-side"><p class="section-lead hint">在读和读过的书都记在自己这一格，推荐也从这里出。还没登记的，就空着。</p></div>
+      </div>
+      <div class="people-grid" id="peopleSlots"></div>
+    </section>
+  </div>
+
+  <!-- ===== 提示词 ===== -->
+  <div class="view inner" id="view-prompts" data-view-name="prompts" hidden>
+    <section class="inner-head tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>填好，</span></span><span class="line l2"><span>就能带去用<em class="dot">。</em></span></span></h1>
+      <p class="inner-lead hint">填完复制到你自己的 AI 工具里。这里不运行任何东西。</p>
+      <figure class="inner-photo"><img src="assets/photos/path.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="inner-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <ol class="row-list row-list--prompts" id="promptList"></ol>
+    </section>
+  </div>
+
+  <!-- ===== 共学 ===== -->
+  <div class="view inner" id="view-together" data-view-name="together" hidden>
+    <section class="inner-head inner-head--right tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>留下你的</span></span><span class="line l2"><span>问题<em class="dot">。</em></span></span></h1>
+      <p class="inner-lead hint">公开发帖还没有接入；现在写下的回答，只存在你的浏览器里。</p>
+      <figure class="inner-photo"><img src="assets/photos/meadow.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="inner-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <ol class="row-list row-list--questions" id="togetherList"></ol>
+    </section>
+  </div>
+
+  <!-- ===== 我的 ===== -->
+  <div class="view inner" id="view-notes" data-view-name="notes" hidden>
+    <section class="inner-head tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>记下你自己的</span></span><span class="line l2"><span>那一行<em class="dot">。</em></span></span></h1>
+      <p class="inner-lead hint">收藏和笔记只存在这台设备的浏览器里，不会上传。</p>
+      <figure class="inner-photo"><img src="assets/photos/v2/home-cover.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="inner-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <div class="notes-layout">
+        <form id="noteForm" class="note-form">
+          <label for="noteText" class="sr-only">一个想法、一个问题、一件想试的事</label>
+          <textarea id="noteText" rows="7" maxlength="10000" placeholder="今天我注意到……" required></textarea>
+          <div class="note-form-foot"><button type="submit" class="btn btn--solid">记下来 <span class="arrow" aria-hidden="true">↗</span></button></div>
+        </form>
+        <div class="notes-side"><h2 class="notes-subtitle">笔记和收藏</h2><div id="savedNotes"></div></div>
+      </div>
+    </section>
+
+    <!-- A creative resume anyone can make: write down what is true, get a prompt, take it to any AI helper. The title sits on the right. -->
+    <section class="resume-maker tex-blue cut" id="resume" data-bg="#CBDBEA" data-theme="light">
+      <div class="section-head section-head--right" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>用 AI 做一份</span></span><span class="line"><span>自己的简历<em class="dot">。</em></span></span></h2>
+        <div class="section-side"><p class="section-lead hint">写下真实做过的事，贴上想去的职位，这里就拼出一段提示词。拿去任何一个 AI 助手都能用，顺便学会怎样把一件事和 AI 说清楚。</p></div>
+      </div>
+      <div class="resume-grid">
+        <form class="make-box resume-form" id="resumeForm" data-reveal="slant">
+          <span class="make-label">填三样</span>
+          <label class="resume-field" for="resumeFacts"><b>1 · 你做过的事</b><span>照实写：在哪里、做了什么、结果怎样。没做过的不写。</span></label>
+          <textarea id="resumeFacts" rows="7" maxlength="6000" placeholder="2024–2026 在一家跨境电商做运营：负责新西兰站的上新和投放，半年内把复购率从 12% 做到 21%……"></textarea>
+          <label class="resume-field" for="resumeJob"><b>2 · 想去的职位</b><span>把职位描述整段贴进来。还没有具体职位，就写想做的方向。</span></label>
+          <textarea id="resumeJob" rows="5" maxlength="6000" placeholder="品牌营销经理：负责海外社媒内容和投放，3 年以上经验，会用数据看效果……"></textarea>
+          <fieldset class="resume-style">
+            <legend><b>3 · 想要的样子</b></legend>
+            <label><input type="radio" name="resumeStyle" value="steady" checked><span>稳重清楚</span></label>
+            <label><input type="radio" name="resumeStyle" value="creative"><span>有创意</span></label>
+            <label><input type="radio" name="resumeStyle" value="portfolio"><span>作品集式</span></label>
+          </fieldset>
+          <p class="resume-local">填的内容只存在这台设备的浏览器里，不会上传。</p>
+        </form>
+        <article class="make-box resume-out" data-reveal="slant" style="--d:1">
+          <h3 class="make-label">提示词</h3>
+          <pre class="make-text" id="resumePrompt" aria-live="polite"></pre>
+          <button type="button" class="btn btn--solid" data-copy="resumePrompt" data-copy-msg="已复制。粘贴到你常用的 AI 助手里，拿回来的简历逐句对一遍：有没有你没做过的事。">复制提示词 <span class="arrow" aria-hidden="true">↗</span></button>
+          <h4 class="resume-learn-title">这段提示词为什么这样写</h4>
+          <ol class="resume-learn">
+            <li><b>先说它是谁、要做什么。</b>一句话交代角色和目标，AI 就知道往哪个方向用力。</li>
+            <li><b>给真材料，再划一条线。</b>经历由你给，规定不许编；缺的地方让它标出来问你。</li>
+            <li><b>给它一个对照。</b>有了职位描述，它才知道该把哪段经历放在最前面。</li>
+            <li><b>说清楚要交回什么。</b>格式、篇幅、附一张对照表，最后再让它自己查一遍。</li>
+          </ol>
+          <p class="resume-source">做法参考开源项目 career-ops：一份真实的底稿，每个职位改一版。<a class="u-link" href="resume-method/">看完整做法 ↗</a></p>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== 说明与条款 ===== -->
+  <div class="view inner legal-view" id="view-legal" data-view-name="legal" hidden>
+    <section class="legal-head" data-bg="#FFFDFB" data-theme="light">
+      <h1 class="display legal-title">说明与条款</h1>
+      <p class="legal-meta">原型阶段的版本 · 2026 年 10 月 · 正式上线前会再更新</p>
+    </section>
+    <div class="legal-body">
+      <section id="privacy" aria-labelledby="privacy-title">
+        <h2 id="privacy-title">隐私说明</h2>
+        <p>现在的花屿没有账号，也没有登录，我们不收集你的姓名、邮箱或任何个人信息。</p>
+        <p>你在“我的”里写下的笔记、收藏，以及在“共学”里写的回答，只保存在这台设备的浏览器里（浏览器本地存储），不会上传到任何服务器。清除浏览器数据，或换一台设备，这些内容就不在了。</p>
+        <p>网站没有接入访问统计、广告或第三方追踪代码。</p>
+      </section>
+      <section id="terms" aria-labelledby="terms-title">
+        <h2 id="terms-title">使用条款</h2>
+        <p>这里的内容用于学习和参考，不构成专业意见。每篇内容里写明了哪些做过、哪些还没做，请按你的实际情况判断。</p>
+        <p>提示词模板是我们写的原创初稿，你可以复制到自己选的 AI 工具里使用。网站本身不运行任何 AI，也不保证生成结果。</p>
+        <p>请只把你理解、也有权使用的材料填进模板。</p>
+      </section>
+      <section id="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">来源与版权</h2>
+        <p>书架里的介绍、导图和分析，以及 AI 编年史，都是我们的解读。原文的版权归原作者或机构所有；每本书都附有作者或出版方的链接，编年史每篇都附有原始出处，内容以原文为准。</p>
+        <p>插画和漫画是本站的原创作品，绘制时使用了 AI 绘图工具。拾、炉、阿驮是栏目的编辑人格，不是 AI 助手。</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer tex-blue cut">
+  <div class="footer-main">
+    <!-- The page reads like a letter: the hero opens with a dedication, the footer closes and signs it. -->
+    <div class="footer-letter">
+      <p class="footer-closing display lines" aria-label="我们在此相聚，带着过去的智慧，和对未来的希望。">
+        <span class="line"><span>我们在此相聚，</span></span>
+        <span class="line l2"><span>带着过去的智慧，</span></span>
+        <span class="line l3"><span>和对未来的希望<em class="dot">。</em></span></span>
+      </p>
+      <a class="wordmark wordmark--big footer-sign" href="#hero" aria-label="花屿 Onbloom Island · 回到开头"><svg class="logo-huayu mark--draw" viewBox="-4 0 218 100" role="img" aria-label="花屿" data-reveal><use href="#huayu"/></svg><span class="wordmark-text">Onbloom Island</span></a>
+    </div>
+    <div class="footer-side">
+      <p class="footer-ps"><span>附</span><a class="link-big footer-cta" href="#/together" data-cursor="共学">带一个问题来<span class="dot">。</span></a></p>
+      <nav class="footer-nav" aria-label="页脚导航">
+        <a href="#/ai">编年史</a><a href="#/library">书架</a><a href="#/prompts">提示词</a>
+        <a href="#/together">共学</a><a href="#/notes">我的</a><a href="resume-method/">简历</a><a href="comic-v3/">漫画</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<div class="legal-bar">
+  <span>© 2026 花屿 Onbloom Island</span>
+  <a href="#/legal">隐私说明</a>
+  <a href="#/legal">使用条款</a>
+  <a href="#/legal">来源与版权</a>
+  <a class="end" href="#hero">回到开头 ↑</a>
+</div>
+
+<dialog id="searchDialog" class="search-dialog" aria-labelledby="searchLabel">
+  <div class="dialog-top"><span class="cap" id="searchLabel">想找什么？</span><button type="button" class="close-dialog" data-close aria-label="关闭搜索">×</button></div>
+  <label class="search-field">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg>
+    <input id="searchInput" type="search" placeholder="试试“Transformer”“Claude”“营销”" aria-label="搜索编年史、书和提示词模板" autocomplete="off">
+  </label>
+  <div id="searchResults" class="search-results" aria-live="polite"></div>
+</dialog>
+
+<dialog id="readerDialog" class="reader-dialog" aria-labelledby="readerTitle">
+  <div class="dialog-top"><span class="cap" id="readerEyebrow"></span><button type="button" class="close-dialog" data-close aria-label="关闭阅读">×</button></div>
+  <article class="reader-article">
+    <h1 id="readerTitle" class="reader-title" tabindex="-1"></h1>
+    <div id="readerBody"></div>
+  </article>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

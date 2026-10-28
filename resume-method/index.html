@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How career-ops, the most-starred AI resume project of 2026, turns one honest CV into a tailored, designed PDF for each job.">
+  <title>AI Resume Method</title>
+  <style>
+    /* 花屿 tones: 淡蓝 + 肉色, deep blue ink, Song headings. Self-contained so the main site styles stay untouched. */
+    :root {
+      --blue: #CBDBEA;
+      --flesh: #EBD3BF;
+      --ink: #1D2B4E;
+      --ink-soft: #2E3D63;
+      --paper: #FBF6F1;
+      --muted: #55607C;
+      --accent: #3E5C9A;
+      --line: rgba(29, 43, 78, .2);
+      --font-display: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+      --font-latin: "Iowan Old Style", "Palatino", "Book Antiqua", Georgia, serif;
+      --font-body: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --gutter: clamp(16px, 4vw, 64px);
+      --cut: clamp(32px, 6vw, 96px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--flesh);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { color: var(--ink); }
+    .top {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 20px var(--gutter);
+      font-size: 13px; letter-spacing: .04em;
+    }
+    .top a { text-decoration: none; color: var(--ink-soft); }
+    .top a:hover { color: var(--accent); }
+    .band { padding: calc(var(--cut) + 24px) var(--gutter); }
+    .band.blue {
+      background: var(--blue);
+      clip-path: polygon(0 var(--cut), 100% 0, 100% calc(100% - var(--cut)), 0 100%);
+      margin: calc(var(--cut) * -0.5) 0;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    .eyebrow { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.25; margin: 0; }
+    h1 { font-size: clamp(34px, 5vw, 64px); }
+    h2 { font-size: clamp(24px, 2.8vw, 36px); margin-bottom: 20px; }
+    h3 { font-size: 19px; margin: 28px 0 8px; }
+    .lead { font-size: clamp(16px, 1.3vw, 19px); color: var(--ink-soft); max-width: 680px; margin: 20px 0 0; }
+    .summary-zh {
+      margin-top: 36px; padding: 20px 24px;
+      background: var(--paper); border-left: 3px solid var(--accent);
+      font-size: 15px;
+    }
+    .summary-zh p { margin: 0 0 8px; }
+    .summary-zh p:last-child { margin: 0; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+    th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+    th { font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    td.num { font-family: var(--font-latin); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    tr.pick td { background: rgba(251, 246, 241, .7); }
+    ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
+    ol.steps > li {
+      counter-increment: s; position: relative;
+      padding: 14px 0 14px 52px; border-bottom: 1px solid var(--line);
+    }
+    ol.steps > li::before {
+      content: counter(s, decimal-leading-zero);
+      position: absolute; left: 0; top: 13px;
+      font-family: var(--font-latin); font-size: 22px; color: var(--accent);
+    }
+    ol.steps strong { display: block; font-family: var(--font-display); font-size: 17px; }
+    ul.plain { padding-left: 20px; margin: 0; }
+    ul.plain li { margin: 6px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { background: var(--paper); padding: 18px 20px; border-radius: 2px; }
+    .card h3 { margin-top: 0; }
+    .card p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+    .swatches { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; }
+    .swatch { display: flex; align-items: center; gap: 8px; font-size: 13px; font-family: var(--font-mono); }
+    .swatch i { width: 22px; height: 22px; border-radius: 50%; display: inline-block; }
+    .gradient-line { height: 3px; border-radius: 2px; margin: 18px 0 6px;
+      background: linear-gradient(to right, hsl(187,74%,32%), hsl(270,70%,45%)); }
+    pre {
+      background: var(--paper); color: var(--ink);
+      padding: 18px 20px; overflow-x: auto; border-radius: 2px;
+      font-family: var(--font-mono); font-size: 13px; line-height: 1.6;
+    }
+    code { font-family: var(--font-mono); font-size: .9em; }
+    .mock {
+      background: #fff; color: #222; max-width: 520px; margin: 8px auto 0;
+      padding: 28px 30px; box-shadow: 0 10px 30px rgba(29, 43, 78, .12);
+      font-family: "Helvetica Neue", Arial, sans-serif; font-size: 11px; line-height: 1.5;
+    }
+    .mock .name { font-size: 22px; font-weight: 700; color: #111; }
+    .mock .title { color: #555; margin-top: 2px; }
+    .mock .gl { height: 2px; margin: 8px 0; background: linear-gradient(to right, hsl(187,74%,32%), hsl(270,70%,45%)); }
+    .mock .contact { color: #666; }
+    .mock .sec { margin-top: 12px; font-weight: 700; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: hsl(187,74%,32%); }
+    .mock .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .mock .tags span { border: 1px solid #d5dde8; padding: 1px 6px; border-radius: 3px; }
+    .mock .co { color: hsl(270,70%,45%); font-weight: 600; }
+    .mock .bar { height: 6px; background: #eee; border-radius: 2px; margin: 5px 0; }
+    .mock .bar.s { width: 70%; }
+    .mock .bar.m { width: 85%; }
+    .note { font-size: 13px; color: var(--muted); }
+    .sources li { margin: 8px 0; font-size: 15px; }
+    footer { padding: 40px var(--gutter) 56px; font-size: 13px; color: var(--muted); }
+    footer .wrap { border-top: 1px solid var(--line); padding-top: 20px; }
+    .closing-words { margin: 0 0 32px; font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 4vw, 44px); line-height: 1.5; color: var(--ink); }
+    .closing-words span { display: block; }
+    .closing-words span:nth-child(2) { padding-left: 1.6em; }
+    .closing-words span:nth-child(3) { padding-left: 3.2em; }
+    @media (max-width: 600px) {
+      ol.steps > li { padding-left: 42px; }
+      .mock { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top" aria-label="Page">
+    <a href="../#/notes"><span aria-hidden="true">↖</span> 回到花屿 · 我的</a>
+    <span>Study note · October 2026</span>
+  </nav>
+
+  <header class="band">
+    <div class="wrap">
+      <p class="eyebrow">AI resume method</p>
+      <h1>One honest CV,<br>a tailored page for every job</h1>
+      <p class="lead">How career-ops, the most-starred AI resume project of 2026, turns a single source CV into a designed, ATS-readable PDF for each job description, with checks that keep every line true.</p>
+
+      <div class="summary-zh" lang="zh-CN">
+        <p><strong>中文摘要</strong></p>
+        <p>目前最火的 AI 做简历方式是开源项目 career-ops（GitHub 约 7.8 万星，MIT 许可，2026 年 4 月爆火）。它跑在 Claude Code 等 AI 命令行里：你只维护一份真实的主简历 <code>cv.md</code>，每贴一个职位描述（JD），AI 就提取关键词、找出你缺的技能、重排经历、改写摘要，然后输出一份结构化 JSON，再由脚本套进设计好的 HTML 模板，生成 PDF。</p>
+        <p>核心三条：只改写真实经历、绝不编造（有代码级的事实校验）；单栏 ATS 友好排版；固定的视觉设计（Space Grotesk + DM Sans 字体、青到紫渐变线）。下面是完整步骤、数据结构、设计规范和来源。</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="band blue" aria-labelledby="why">
+    <div class="wrap">
+      <p class="eyebrow">Why this one</p>
+      <h2 id="why">The three leading open-source options</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Project</th><th>Stars</th><th>Since</th><th>License</th><th>What it is</th></tr>
+          </thead>
+          <tbody>
+            <tr class="pick">
+              <td><a href="https://github.com/career-ops-hq/career-ops">career-ops</a><br><span class="note">picked</span></td>
+              <td class="num">77.8k</td>
+              <td class="num">Apr 2026</td>
+              <td>MIT</td>
+              <td>A Claude Code skill system for the whole job search. Its <code>pdf</code> mode tailors a CV to each job and renders a designed PDF. Went from private repo to 35k stars in its first week; #1 repo of the day; Product Hunt launch.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/reactive-resume/reactive-resume">Reactive Resume</a></td>
+              <td class="num">44.9k</td>
+              <td class="num">2020</td>
+              <td>MIT</td>
+              <td>A visual resume editor with many templates. Ships a Claude skill that turns a chat into resume JSON you paste into the editor. Strongest on looks, weaker on per-job tailoring.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/srbhr/Resume-Matcher">Resume Matcher</a></td>
+              <td class="num">28.9k</td>
+              <td class="num">2020</td>
+              <td>Apache-2.0</td>
+              <td>A local app that scores and rewrites a resume against a job description with many LLMs. Matching tool first, design second.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Stars read from the GitHub API on 28 October 2026. career-ops is newest, most talked about, and the only one that is an AI workflow end to end, so it is the method recorded here.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="inputs">
+    <div class="wrap">
+      <p class="eyebrow">Inputs and outputs</p>
+      <h2 id="inputs">What goes in, what comes out</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>You keep</h3>
+          <p><code>cv.md</code>, the single source of truth: every role, title, date and number, written once and kept honest. Optional <code>article-digest.md</code> for proof points such as talks and articles.</p>
+        </div>
+        <div class="card">
+          <h3>You set once</h3>
+          <p><code>config/profile.yml</code>: name, contact, headline, target roles, page size (A4, Letter or auto by country), photo on or off, default template.</p>
+        </div>
+        <div class="card">
+          <h3>Each time</h3>
+          <p>A job description, pasted as text or a link. That is the only per-job input.</p>
+        </div>
+        <div class="card">
+          <h3>You get</h3>
+          <p>A tailored <code>cv.html</code> and <code>cv.pdf</code>, a list of skill gaps, a keyword-coverage score, and optionally a plain ATS copy and a cover letter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band blue" aria-labelledby="flow">
+    <div class="wrap">
+      <p class="eyebrow">The method</p>
+      <h2 id="flow">Ten steps from job post to PDF</h2>
+      <ol class="steps">
+        <li><strong>Read the source CV</strong>Load <code>cv.md</code>. Nothing in the output may come from anywhere else.</li>
+        <li><strong>Save the job description</strong>Write the JD to its own file first, so it is archived even after the posting closes.</li>
+        <li><strong>Pull 15–20 keywords</strong>Extract the exact vocabulary the employer uses for skills, tools and outcomes.</li>
+        <li><strong>Sort skills into three groups</strong>A script compares JD requirements with <code>cv.md</code>: <em>existing</em> (already named), <em>supported</em> (shown in your bullets but not named yet) and <em>gap</em> (no trace). Gaps are shown to you before anything is written, and never filled in.</li>
+        <li><strong>Pick language, paper and role type</strong>US or Canada uses Letter, everywhere else A4. Detect the role archetype to choose the framing.</li>
+        <li><strong>Map the recruiter's doubts</strong>List what a reviewer would worry about for this job and which real evidence answers each doubt.</li>
+        <li><strong>Tailor, never invent</strong>Rewrite the summary with JD keywords, choose the 3–4 most relevant projects, reorder bullets so the strongest match comes first, and build a 6–8 tag competency grid from existing and supported skills only. Roles stay in reverse-chronological order.</li>
+        <li><strong>Write a JSON payload, not HTML</strong>The AI emits compact structured data (schema below). A script owns all markup and escaping, which cuts tokens and stops broken layouts.</li>
+        <li><strong>Run the gates</strong>Title check: no job title may drift from <code>cv.md</code>. Structure check: no lost company details or reordered roles. Fact gate (hard stop): any number or claim not found in your sources blocks the PDF.</li>
+        <li><strong>Render and report</strong>Fill the chosen HTML template, print to PDF with headless Chromium, warn past two pages, then report the path, page count, keyword coverage and remaining gaps.</li>
+      </ol>
+      <p class="note">Optional passes: a hiring-manager audit (a separate agent role-plays the reviewer and marks each bullet keep, cut or rewrite) and an ATS copy (same facts, competency tags folded into a plain Skills line for pasting into application forms).</p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="design">
+    <div class="wrap">
+      <p class="eyebrow">The design</p>
+      <h2 id="design">One clean column, two typefaces, one gradient</h2>
+      <div class="grid">
+        <div>
+          <h3>Visual spec</h3>
+          <ul class="plain">
+            <li>Headings: Space Grotesk 600–700; body: DM Sans 400–500 at 11px, line height 1.5. Both fonts are OFL and self-hosted.</li>
+            <li>Name in Space Grotesk 24px bold, then a 2px gradient line, then the contact row.</li>
+            <li>Section headers 13px, uppercase, letter spacing 0.05em, in the cyan primary.</li>
+            <li>Company names in the purple accent.</li>
+            <li>Margins 0.6in on pure white.</li>
+          </ul>
+          <div class="gradient-line" role="img" aria-label="Cyan to purple gradient line"></div>
+          <div class="swatches">
+            <span class="swatch"><i style="background:hsl(187,74%,32%)"></i>hsl(187,74%,32%)</span>
+            <span class="swatch"><i style="background:hsl(270,70%,45%)"></i>hsl(270,70%,45%)</span>
+          </div>
+        </div>
+        <div aria-hidden="true">
+          <div class="mock">
+            <div class="name">Jane Smith</div>
+            <div class="title">Senior Backend Engineer</div>
+            <div class="gl"></div>
+            <div class="contact">jane@example.com · janesmith.dev · Auckland</div>
+            <div class="sec">Professional Summary</div>
+            <div class="bar m"></div><div class="bar s"></div>
+            <div class="sec">Core Competencies</div>
+            <div class="tags"><span>RAG Pipelines</span><span>LLMOps</span><span>Kubernetes</span><span>Stakeholder Mgmt</span></div>
+            <div class="sec">Work Experience</div>
+            <div><span class="co">Company Name</span> · Job Title</div>
+            <div class="bar m"></div><div class="bar s"></div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Section order, built for a six-second scan</h3>
+      <ol class="plain">
+        <li>Header: name, headline, gradient line, contact, portfolio</li>
+        <li>Professional Summary: 3–4 keyword-dense lines that say which role and why this one</li>
+        <li>Core Competencies: 6–8 keyword tags</li>
+        <li>Work Experience, newest first</li>
+        <li>Projects, the 3–4 most relevant</li>
+        <li>Education and Certifications</li>
+        <li>Skills: languages and technical</li>
+      </ol>
+
+      <h3>Templates that ship</h3>
+      <p>Base, modern, compact, executive, leadership, a "Jake"-style classic, an ATS-plain variant, a Chinese minimal template (<code>zh-minimal</code>, Simplified Chinese fonts and strict CJK line breaks) and LaTeX versions including a CJK one. Setting <code>lang</code> to <code>zh-CN</code> in the payload switches fonts and line breaking.</p>
+    </div>
+  </section>
+
+  <section class="band blue" aria-labelledby="ats">
+    <div class="wrap">
+      <p class="eyebrow">The rules</p>
+      <h2 id="ats">ATS rules and honest keywords</h2>
+      <div class="grid">
+        <div>
+          <h3>Parseable by machines</h3>
+          <ul class="plain">
+            <li>Single column, no sidebars or nested tables</li>
+            <li>Standard headers: Professional Summary, Work Experience, Education, Skills, Certifications, Projects</li>
+            <li>Empty sections disappear, header included</li>
+            <li>No text inside images, nothing critical in page headers or footers</li>
+            <li>Real selectable UTF-8 text</li>
+            <li>Keywords spread across the summary, the first bullet of each role, and Skills</li>
+            <li>No hidden text, white-font tricks or stuffing</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Reword, never add</h3>
+          <p>Use the employer's words for experience you really have. Examples from the project:</p>
+          <ul class="plain">
+            <li>"LLM workflows with retrieval" → "RAG pipeline design and LLM orchestration workflows"</li>
+            <li>"collaborated with team" → "stakeholder management across engineering, operations and business"</li>
+          </ul>
+          <p>Bold (<code>**…**</code>) marks the one result a recruiter should catch, such as "cut latency to <strong>120 ms</strong>". Bold reorders attention; it never adds a claim.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="schema">
+    <div class="wrap">
+      <p class="eyebrow">The data</p>
+      <h2 id="schema">The JSON payload the AI writes</h2>
+      <p>The AI's whole job ends here. A script fills the template from these keys and fails loudly on a missing required field or a misspelt section name.</p>
+<pre><code>{
+  "lang": "en",                // "zh-CN" switches to Chinese fonts
+  "page_format": "a4",         // "letter" for US / Canada
+  "candidate": {
+    "name": "", "title": "", "email": "", "phone": "",
+    "location": "",
+    "linkedin":  { "url": "", "display": "" },
+    "portfolio": { "url": "", "display": "" },
+    "photo": ""                // empty = no photo (US/UK); set for DACH
+  },
+  "summary": "3–4 lines with JD keywords, true to cv.md",
+  "competencies": ["6–8 keyword phrases"],
+  "experience": [{
+    "company": "", "role": "", "location": "",
+    "context": "one line about the company",
+    "dates": "June 2022 - Present",
+    "bullets": ["strongest JD match first, **key result** in bold"]
+  }],
+  "projects":       [{ "name": "", "url": "", "tech": "", "description": "" }],
+  "education":      [{ "title": "", "org": "", "year": "", "description": "" }],
+  "certifications": [{ "title": "", "org": "", "year": "" }],
+  "awards":         [{ "title": "", "org": "", "year": "" }],
+  "skills":         [{ "category": "Languages", "items": "English, Mandarin" }]
+}</code></pre>
+      <p class="note">Required per entry: <code>company</code> + <code>role</code> for experience, <code>name</code> for projects, <code>title</code> for education, certifications and awards, <code>items</code> for skills.</p>
+    </div>
+  </section>
+
+  <section class="band blue" aria-labelledby="run">
+    <div class="wrap">
+      <p class="eyebrow">Using it</p>
+      <h2 id="run">How to run it</h2>
+      <p>The project installs with one command and then sets itself up by chatting: it asks for your CV, profile and target roles.</p>
+<pre><code>npx @santifer/career-ops init
+cd career-ops
+claude</code></pre>
+      <p>Then paste a job link or JD text, or ask for the <code>pdf</code> mode on a role you have already evaluated. It needs Node.js and, for PDFs, Playwright Chromium. It drafts and never submits or sends anything; you read every CV before it goes out.</p>
+      <p>Without installing anything, the same method works by hand with any AI chat: keep an honest master CV, give it the JD, ask for the skill-gap split first, then the tailored JSON above, then check every number against the master CV before laying it out.</p>
+      <p>The <a href="../#/notes">resume maker on 花屿</a> builds that prompt for you from what you have done and the job you want.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="sources">
+    <div class="wrap">
+      <p class="eyebrow">Sources</p>
+      <h2 id="sources">Where this comes from</h2>
+      <ul class="sources">
+        <li><a href="https://github.com/career-ops-hq/career-ops">career-ops on GitHub</a>, MIT License, © 2026 Santiago Fernández de Valderrama. Method condensed from <a href="https://github.com/career-ops-hq/career-ops/blob/main/modes/pdf.md"><code>modes/pdf.md</code></a> and the README.</li>
+        <li><a href="https://santifer.io/career-ops-system">career-ops: How I Built My Own AI Job Search Tool</a>, the author's write-up, including the viral first week</li>
+        <li><a href="https://career-ops.org/">career-ops.org</a>, project site</li>
+        <li><a href="https://www.producthunt.com/products/santifer-io">Career-Ops on Product Hunt</a></li>
+        <li><a href="https://github.com/reactive-resume/reactive-resume">Reactive Resume on GitHub</a> and its <a href="https://claudemarketplaces.com/skills/amruthpillai/reactive-resume/resume-builder">resume-builder Claude skill</a></li>
+        <li><a href="https://github.com/srbhr/Resume-Matcher">Resume Matcher on GitHub</a></li>
+      </ul>
+      <p class="note">Star counts from the GitHub API on 28 October 2026. Viral-week numbers and job outcomes are the author's own figures.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="closing-words" lang="zh-CN"><span>你走过的路，</span><span>每一步都算数，</span><span>只是还没写下来。</span></p>
+    <div class="wrap">花屿 Onbloom Island · a study note on someone else's open-source work, summarised in our own words</div>
+  </footer>
+</body>
+</html>
