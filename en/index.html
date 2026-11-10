@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EBD3BF">
+  <meta name="description" content="Onbloom Island: a knowledge base and study community that starts from AI and connects business, marketing and art. We turn scattered AI material and hands-on experience into content you can read, weigh up and put to use when a real problem comes along.">
+  <title>Onbloom Island · A knowledge base and study community that starts from AI</title>
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" as="image" href="../assets/photos/v2/home-cover.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../en.css">
+  <script src="../motion.js" defer></script>
+  <script src="chronicle.js" defer></script>
+  <script src="books.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body style="--bg: #EBD3BF" data-view="topics">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Island mark: an island rising from a wave line, with a sprout that ends in a bud. Strokes draw in order. -->
+<svg class="defs" width="0" height="0" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 40">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6">
+      <path d="M2 34C8 31 12 31 18 34S28 37 34 34 44 31 50 34 58 37 62 34" pathLength="1" style="transition-delay:0s"/>
+      <path d="M12 31C16 22 24 18 32 18S48 22 52 31" pathLength="1" style="transition-delay:.3s"/>
+      <path d="M32 18V8" pathLength="1" style="transition-delay:.6s"/>
+      <path d="M32 14C28 14 25.5 11.5 25.5 8C29 8 32 10.5 32 14" pathLength="1" style="transition-delay:.75s"/>
+    </g>
+    <g class="bud" style="fill:var(--accent)">
+      <circle cx="32" cy="3.2" r="1.7"/><circle cx="33.9" cy="4.6" r="1.7"/><circle cx="33.2" cy="6.8" r="1.7"/>
+      <circle cx="30.8" cy="6.8" r="1.7"/><circle cx="30.1" cy="4.6" r="1.7"/>
+      <circle cx="32" cy="5.2" r=".9" style="fill:var(--flesh)"/>
+    </g>
+  </symbol>
+  <!-- 花屿 lettering: 艹 grows a leaf, the hook of 匕 ends in a bud, the base of 山 is a wave. -->
+  <symbol id="huayu" viewBox="-4 0 218 100">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.6">
+      <path d="M8 24H92" pathLength="1" style="transition-delay:0.00s"/>
+      <path d="M32 9V37" pathLength="1" style="transition-delay:0.08s"/>
+      <path d="M68 9V37" pathLength="1" style="transition-delay:0.16s"/>
+      <path d="M68 17C71 10 77 7 84 8C82 14 75 18 68 17" pathLength="1" style="transition-delay:0.24s"/>
+      <path d="M40 43C34 55 26 63 12 71" pathLength="1" style="transition-delay:0.32s"/>
+      <path d="M28 59V94" pathLength="1" style="transition-delay:0.40s"/>
+      <path d="M84 47C74 55 64 61 50 65" pathLength="1" style="transition-delay:0.48s"/>
+      <path d="M58 41V80C58 88 62 91 70 91H82C88 91 91 88 91 81" pathLength="1" style="transition-delay:0.56s"/>
+      <path d="M132 32V82" pathLength="1" style="transition-delay:0.64s"/>
+      <path d="M117 52V82" pathLength="1" style="transition-delay:0.72s"/>
+      <path d="M147 52V80" pathLength="1" style="transition-delay:0.80s"/>
+      <path d="M114 85C120 81 124 81 130 85S140 89 146 85 154 81 157 84" pathLength="1" style="transition-delay:0.88s"/>
+      <path d="M168 22H205" pathLength="1" style="transition-delay:0.96s"/>
+      <path d="M168 22V50H201C201 67 199 81 192 91L185 87" pathLength="1" style="transition-delay:1.04s"/>
+      <path d="M158 70H212" pathLength="1" style="transition-delay:1.12s"/>
+    </g>
+    <g class="bud" style="fill:var(--bud)">
+      <circle cx="91" cy="70" r="3.4"/><circle cx="94.8" cy="72.8" r="3.4"/><circle cx="93.4" cy="77.2" r="3.4"/>
+      <circle cx="88.6" cy="77.2" r="3.4"/><circle cx="87.2" cy="72.8" r="3.4"/>
+      <circle cx="91" cy="74.4" r="1.8" style="fill:var(--flesh)"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <a class="wordmark" href="#/topics" aria-label="Onbloom Island · Home"><svg class="logo-huayu" viewBox="-4 0 218 100" role="img" aria-label="Onbloom Island"><use href="#huayu"/></svg><span class="wordmark-text">Onbloom Island</span></a>
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="#/ai" data-nav="ai">Chronicle</a>
+    <a href="#/library" data-nav="library">Bookshelf</a>
+    <a href="#/prompts" data-nav="prompts">Prompts</a>
+    <a href="#/together" data-nav="together">Study together</a>
+    <a href="../resume-method/">Résumé</a>
+    <a href="#/notes" data-nav="notes">Mine<span class="count" id="savedCount" aria-label="0 saved">0</span></a>
+    <a class="lang-link" href="../" hreflang="zh-CN" lang="zh-CN" onclick="this.href=this.getAttribute('href')+location.hash">中文</a>
+    <a class="search-btn" href="#/search" aria-label="Search material and templates (shortcut: slash)">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg><span>Search</span>
+    </a>
+  </nav>
+</header>
+
+<nav class="side-dots" aria-label="Home sections">
+  <a href="#hero"><i></i><span>Start</span></a>
+  <a href="#about"><i></i><span>What we do</span></a>
+  <a href="#make"><i></i><span>Film</span></a>
+  <a href="#editors"><i></i><span>Editors</span></a>
+  <a href="#comic"><i></i><span>Comic</span></a>
+  <a href="#chronicle"><i></i><span>Chronicle</span></a>
+</nav>
+
+<main id="main" tabindex="-1">
+
+  <!-- ===== 首页 ===== -->
+  <div class="view" id="view-topics" data-view-name="topics">
+
+    <section class="hero tex-flesh" id="hero" data-bg="#EBD3BF" data-theme="light" data-dot="Start" data-parallax>
+      <figure class="hero-photo">
+        <img src="../assets/photos/v2/home-cover.jpg" width="1672" height="941" alt="On a seaside hillside, an old farmer and Xiangye unroll an old scroll with a drawing of a cradle; a traveller and Lu steady the mended cup blooming in the cradle, Shi perches on Lu's head, and Atuo watches from behind with the scroll chest on his back" fetchpriority="high">
+      </figure>
+      <p class="hero-letter" data-reveal="slant">For those who left their experience on the scroll,<br><span>and for those who arrive with new questions.</span></p>
+      <!-- The painting is full of faces, so the title rides a slanted paper band over its foreground. -->
+      <div class="hero-band tex-flesh" data-hint-host>
+        <h1 class="hero-title display lines" aria-label="With wisdom, endless possibilities.">
+          <span class="line"><span>With wisdom,</span></span>
+          <span class="line l2"><span>endless possibilities<em class="dot">.</em></span></span>
+        </h1>
+        <div class="hero-side">
+          <p class="hero-hint hint"><b>Use AI with understanding.</b>Onbloom Island is a knowledge base and study community that starts from AI and connects business, marketing and art.</p>
+          <div class="hero-actions" data-reveal="slant" style="--d:6">
+            <a class="btn btn--solid" href="#about">See what's on the island <span class="arrow" aria-hidden="true">↘</span></a>
+            <a class="btn btn--glass" href="#/search">Search <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What we do: three habits, said plainly. -->
+    <section class="about tex-blue cut" id="about" data-bg="#CBDBEA" data-theme="light" data-dot="What we do" data-parallax>
+      <div class="about-head">
+        <h2 class="display section-title lines"><span class="line"><span>On this island,</span></span><span class="line"><span>we do three things<em class="dot">.</em></span></span></h2>
+        <div class="about-text">
+          <p class="about-statement" data-reveal>Starting from AI and connecting business, marketing and art: we read the books and material properly, try the methods by hand, and write up what happens in AI, one piece at a time.</p>
+        </div>
+      </div>
+      <ol class="work-lines" aria-label="we do three things">
+        <li data-reveal="slant" data-hint-host><a href="#/library" data-cursor="Bookshelf"><i class="n latin">01</i><span class="big">Read good books, explain them clearly<em class="dot">.</em></span><span class="work-detail"><span class="hint">Every book on the shelf gets a card: why it is worth reading, where to read it legally, plus our mind maps, study cards and analysis.</span></span></a></li>
+        <li data-reveal="slant" style="--d:1" data-hint-host><a href="#make" data-cursor="Film"><i class="n latin">02</i><span class="big">Try it by hand, write it down<em class="dot">.</em></span><span class="work-detail"><span class="hint">Each prompt is actually run. The result sits next to the prompt, and whatever didn't work is written down too.</span></span></a></li>
+        <li data-reveal="slant" style="--d:2" data-hint-host><a href="#chronicle" data-cursor="Chronicle"><i class="n latin">03</i><span class="big">Keep up, keep writing<em class="dot">.</em></span><span class="work-detail"><span class="hint">The AI chronicle starts in 2017 and gains a new entry at every turning point. Old judgements stay; new findings are added after them.</span></span></a></li>
+      </ol>
+    </section>
+
+    <!-- One question, two boxes: the finished short and the prompt that makes it. The title sits on the right. -->
+    <section class="make tex-flesh cut-r" id="make" data-bg="#EBD3BF" data-theme="light" data-dot="Film">
+      <div class="section-head section-head--right">
+        <h2 class="display section-title lines"><span class="line"><span>It starts with</span></span><span class="line"><span>one question<em class="dot">.</em></span></span></h2>
+      </div>
+      <div class="make-grid">
+        <figure class="make-box make-film" data-reveal="slant">
+          <figcaption class="make-label">Film</figcaption>
+          <div class="film-frame">
+            <img src="../assets/photos/v2/home-cover.jpg" width="1672" height="941" alt="" loading="lazy">
+            <span class="film-state">15 seconds · in production</span>
+          </div>
+        </figure>
+        <article class="make-box make-prompt" data-reveal="slant" style="--d:1">
+          <h3 class="make-label">Prompts</h3>
+          <pre class="make-text" id="filmPrompt">“Old Scroll · New Flower”, a 15-second film
+
+Style: warm hand-drawn animation matching the scroll painting on the Onbloom Island home page, with watercolour and pencil texture. A seaside hillside in early morning, golden side light, slow and steady camera.
+
+Characters:
+· Xiangye: a boy of twelve or thirteen, dark curly hair, mustard-yellow jacket, beige scarf, carrying a pack.
+· Atuo: a huge, gentle old tortoise with a low wooden scroll chest strapped to his back; a few long scrolls stick out of its opening.
+· Lu: a round, chubby little creature made of orange-red clay, with a small opening in its belly and a glow of fire inside.
+· Shi: a small white seabird with blue feathers.
+
+Shots:
+0–3 s: Atuo stops on the seaside hillside. Xiangye pulls an old long scroll from the chest and unrolls it; panel after small panel shows a wooden cradle holding a cup steady.
+3–7 s: Lu holds a small cream-white clay cup with a crack and three mending staples, and places it in the wooden cradle, following the drawing. Shi lands on the cradle's crossbar and tilts its head.
+7–11 s: A sea breeze blows and the cradle sways a little. Together they turn it to face the sun; the shoot in the cup slowly lifts and opens into a small flower.
+11–15 s: In the blank panel at the end of the scroll, Xiangye draws the flower in charcoal (a drawing only, no words), rolls the scroll up and puts it back in the chest. The group walks on along the coastal path; the camera pulls back to show the sea and the distant hills.
+
+Sound: waves, wind, a clay cup tapping wood, and a light xylophone note at the end. No dialogue, no narration.
+Avoid: any text, letters, numbers, logos or watermarks in frame; deformed characters, extra fingers.
+Format: 16:9, 1080p.</pre>
+          <button type="button" class="btn btn--solid" data-copy="filmPrompt">Copy prompt <span class="arrow" aria-hidden="true">↗</span></button>
+        </article>
+      </div>
+    </section>
+
+    <!-- The three editors, each with the job they actually do on the site. The title sits on the right. -->
+    <section class="editors tex-blue cut" id="editors" data-bg="#CBDBEA" data-theme="light" data-dot="Editors">
+      <div class="section-head section-head--right" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>Travelling with us,</span></span><span class="line"><span>three editors<em class="dot">.</em></span></span></h2>
+        <div class="section-side">
+          <p class="section-lead hint">They are the editorial personas of each section. They sign the work and show you around; they are not AI assistants.</p>
+        </div>
+      </div>
+      <div class="editor-grid">
+        <article class="editor" data-reveal="slant">
+          <figure class="editor-art"><img src="../assets/characters/shi.webp" width="203" height="222" alt="Shi: a white and blue seabird" loading="lazy"></figure>
+          <h3>Shi<span class="editor-job">The one who finds sources</span></h3>
+          <p class="editor-duty">Shi tracks down the source of every book on the shelf and every chronicle entry: where the original is, whether it can be read free and legally, and who wrote it. If no source can be found, it doesn't go up.</p>
+          <blockquote>“Can't find who drew this one. Keep it aside — to be checked.”</blockquote>
+          <a class="u-link" href="#/library">To the bookshelf ↗</a>
+        </article>
+        <article class="editor" data-reveal="slant" style="--d:1">
+          <figure class="editor-art"><img src="../assets/characters/lu.webp" width="225" height="236" alt="Lu: a little clay creature with a fire in its belly" loading="lazy"></figure>
+          <h3>Lu<span class="editor-job">The one who tries things</span></h3>
+          <p class="editor-duty">Lu actually runs each prompt: which tool, what material, what came out and what didn't work, all written down as it happened. The 15-second film on the home page is Lu's trial piece.</p>
+          <blockquote>“It blocks the wind when we stop, but it bumps into things on the turns.”</blockquote>
+          <a class="u-link" href="#make">Watch the film ↗</a>
+        </article>
+        <article class="editor" data-reveal="slant" style="--d:2">
+          <figure class="editor-art editor-art--shell"><img src="../assets/characters/atuo-shell.png" width="630" height="436" alt="Atuo: an old tortoise travelling with a long scroll on his back" loading="lazy"></figure>
+          <h3>Atuo<span class="editor-job">The one who writes it down</span></h3>
+          <p class="editor-duty">Atuo carries the AI chronicle forward, adding an entry at each new turning point. Old judgements are never deleted; what changed, and why, is written after them.</p>
+          <blockquote>“The new one's written, and the old one stays too.”</blockquote>
+          <a class="u-link" href="#chronicle">To the chronicle ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- The comic: painting on the left, words on the right. -->
+    <section class="comic-block comic-block--flip tex-flesh cut-r" id="comic" data-bg="#EBD3BF" data-theme="light" data-dot="Comic">
+      <div class="comic-copy">
+        <svg class="mark mark--draw comic-mark" viewBox="0 0 64 40" aria-hidden="true" data-reveal><use href="#mark"/></svg>
+        <h2 class="display comic-title lines" aria-label="Comic: “The Flower That Came Along”"><span class="line"><span>The flower</span></span><span class="line"><span>that came along<em class="dot">.</em></span></span></h2>
+        <p class="comic-lead" data-reveal style="--d:1">Xiangye and his friends want to grow a flower on Atuo's back so it can travel with them. The wind, the turns and a flower that won't bloom are the three hurdles along the way.</p>
+        <a class="link-big" href="../comic-v3/" data-cursor="Read the comic" data-reveal style="--d:2">Read the comic<span class="dot">↗</span></a>
+      </div>
+      <a class="comic-panel" href="../comic-v3/" data-cursor="Read the comic" data-reveal="slant" style="--d:2" data-parallax aria-label="Open the comic “The Flower That Came Along”">
+        <span class="panel-frame">
+          <img src="../assets/photos/cliff.jpg" width="1672" height="941" alt="" loading="lazy">
+          <span class="bubble" aria-hidden="true">Could we grow a real one, so it comes along too?</span>
+        </span>
+      </a>
+    </section>
+
+    <section class="band band--meadow band--right cut" id="band-carve" data-bg="#EBD3BF" data-theme="light" data-parallax>
+      <figure class="band-photo"><img src="../assets/photos/meadow.jpg" width="1672" height="941" alt="On the grassland, Atuo walks toward the hills, a flower blooming in the clay cup on his back" loading="lazy"></figure>
+      <h2 class="band-words display"><span class="w1">Old marks on the scroll,</span><span class="w2">a new flower in the drawing<em class="dot">.</em></span></h2>
+    </section>
+
+    <!-- AI chronicle: one line per turning point, alternating either side of a spine; each opens its own page. -->
+    <section class="chronicle tex-flesh cut-r" id="chronicle" data-bg="#EBD3BF" data-theme="light" data-dot="Chronicle">
+      <div class="section-head" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>The AI chronicle,</span></span><span class="line"><span>starting from one paper<em class="dot">.</em></span></span></h2>
+        <div class="section-side">
+          <p class="section-lead hint">Starting with “Attention Is All You Need” in 2017, every event that changed the course of AI gets its own page: what happened, why it matters, and what use it is to us.</p>
+        </div>
+      </div>
+      <ol class="chron-list" id="chronList" aria-label="AI chronicle"></ol>
+    </section>
+  </div>
+
+  <!-- ===== AI 编年史 · 单篇 ===== -->
+  <div class="view inner" id="view-ai" data-view-name="ai" hidden>
+    <section class="inner-head chron-head tex-blue" id="chronHead" data-bg="#CBDBEA" data-theme="light" data-parallax></section>
+    <section class="inner-body chron-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <article class="chron-article" id="chronArticle"></article>
+    </section>
+  </div>
+
+  <!-- ===== 书架 ===== -->
+  <div class="view inner" id="view-library" data-view-name="library" hidden>
+    <section class="inner-head inner-head--right tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>Book by book,</span></span><span class="line l2"><span>to the last page<em class="dot">.</em></span></span></h1>
+      <p class="inner-lead hint">One card per book: why it is worth reading, where to read it legally, who is reading it, plus our mind maps, cards and analysis.</p>
+      <figure class="inner-photo"><img src="../assets/photos/cliff.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="shelf-free tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <div class="section-head" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>Start with these,</span></span><span class="line"><span>free in full<em class="dot">.</em></span></span></h2>
+        <div class="section-side"><p class="section-lead hint">Open one and read the whole book. Every link comes from the author or publisher; no files of unknown origin.</p></div>
+      </div>
+      <div class="book-row book-row--free" id="freeBooks"></div>
+    </section>
+    <section class="shelf-parts tex-blue cut" data-bg="#CBDBEA" data-theme="light">
+      <nav class="part-nav" id="partNav" aria-label="Shelf sections"></nav>
+      <div id="bookParts"></div>
+    </section>
+    <section class="shelf-people tex-flesh cut-r" id="people" data-bg="#EBD3BF" data-theme="light">
+      <div class="section-head section-head--right" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>A shelf</span></span><span class="line"><span>for each reader<em class="dot">.</em></span></span></h2>
+        <div class="section-side"><p class="section-lead hint">The books each person is reading or has read go on their own shelf, and recommendations come from there. Shelves nobody has filled in yet stay empty.</p></div>
+      </div>
+      <div class="people-grid" id="peopleSlots"></div>
+    </section>
+  </div>
+
+  <!-- ===== 提示词 ===== -->
+  <div class="view inner" id="view-prompts" data-view-name="prompts" hidden>
+    <section class="inner-head tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>Fill it in,</span></span><span class="line l2"><span>take it with you<em class="dot">.</em></span></span></h1>
+      <p class="inner-lead hint">Fill it in, then copy it into your own AI tool. Nothing runs here.</p>
+      <figure class="inner-photo"><img src="../assets/photos/path.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="inner-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <ol class="row-list row-list--prompts" id="promptList"></ol>
+    </section>
+  </div>
+
+  <!-- ===== 共学 ===== -->
+  <div class="view inner" id="view-together" data-view-name="together" hidden>
+    <section class="inner-head inner-head--right tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>Leave your</span></span><span class="line l2"><span>question<em class="dot">.</em></span></span></h1>
+      <p class="inner-lead hint">Public posting isn't connected yet; anything you write now is kept only in your browser.</p>
+      <figure class="inner-photo"><img src="../assets/photos/meadow.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="inner-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <ol class="row-list row-list--questions" id="togetherList"></ol>
+    </section>
+  </div>
+
+  <!-- ===== 我的 ===== -->
+  <div class="view inner" id="view-notes" data-view-name="notes" hidden>
+    <section class="inner-head tex-blue" data-bg="#CBDBEA" data-theme="light" data-parallax data-hint-host>
+      <h1 class="display inner-title lines"><span class="line"><span>Write down</span></span><span class="line l2"><span>your own line<em class="dot">.</em></span></span></h1>
+      <p class="inner-lead hint">Saved items and notes stay in this device's browser and are never uploaded.</p>
+      <figure class="inner-photo"><img src="../assets/photos/v2/home-cover.jpg" width="1672" height="941" alt="" loading="lazy"></figure>
+    </section>
+    <section class="inner-body tex-flesh cut-r" data-bg="#EBD3BF" data-theme="light">
+      <div class="notes-layout">
+        <form id="noteForm" class="note-form">
+          <label for="noteText" class="sr-only">An idea, a question, something you want to try</label>
+          <textarea id="noteText" rows="7" maxlength="10000" placeholder="Today I noticed…" required></textarea>
+          <div class="note-form-foot"><button type="submit" class="btn btn--solid">Write it down <span class="arrow" aria-hidden="true">↗</span></button></div>
+        </form>
+        <div class="notes-side"><h2 class="notes-subtitle">Notes and saved items</h2><div id="savedNotes"></div></div>
+      </div>
+    </section>
+
+    <!-- A creative resume anyone can make: write down what is true, get a prompt, take it to any AI helper. The title sits on the right. -->
+    <section class="resume-maker tex-blue cut" id="resume" data-bg="#CBDBEA" data-theme="light">
+      <div class="section-head section-head--right" data-hint-host>
+        <h2 class="display section-title lines"><span class="line"><span>Use AI to make</span></span><span class="line"><span>your own résumé<em class="dot">.</em></span></span></h2>
+        <div class="section-side"><p class="section-lead hint">Write down what you have really done and paste in the job you want, and this page puts together a prompt. It works with any AI assistant, and along the way you learn how to explain something clearly to AI.</p></div>
+      </div>
+      <div class="resume-grid">
+        <form class="make-box resume-form" id="resumeForm" data-reveal="slant">
+          <span class="make-label">Three things to fill in</span>
+          <label class="resume-field" for="resumeFacts"><b>1 · What you have done</b><span>Write it as it was: where, what you did, how it turned out. Leave out anything you haven't done.</span></label>
+          <textarea id="resumeFacts" rows="7" maxlength="6000" placeholder="2024–2026, operations at a cross-border e-commerce company: ran product launches and ads for the New Zealand store, raised the repeat-purchase rate from 12% to 21% in six months…"></textarea>
+          <label class="resume-field" for="resumeJob"><b>2 · The job you want</b><span>Paste in the whole job description. No specific job yet? Describe the direction you want.</span></label>
+          <textarea id="resumeJob" rows="5" maxlength="6000" placeholder="Brand marketing manager: owns overseas social content and paid media, 3+ years' experience, reads results from data…"></textarea>
+          <fieldset class="resume-style">
+            <legend><b>3 · The style you want</b></legend>
+            <label><input type="radio" name="resumeStyle" value="steady" checked><span>Steady and clear</span></label>
+            <label><input type="radio" name="resumeStyle" value="creative"><span>Creative</span></label>
+            <label><input type="radio" name="resumeStyle" value="portfolio"><span>Portfolio-style</span></label>
+          </fieldset>
+          <p class="resume-local">What you type stays in this device's browser and is never uploaded.</p>
+        </form>
+        <article class="make-box resume-out" data-reveal="slant" style="--d:1">
+          <h3 class="make-label">Prompts</h3>
+          <pre class="make-text" id="resumePrompt" aria-live="polite"></pre>
+          <button type="button" class="btn btn--solid" data-copy="resumePrompt" data-copy-msg="Copied. Paste it into your usual AI assistant, then check the résumé it gives back line by line for anything you haven't actually done.">Copy prompt <span class="arrow" aria-hidden="true">↗</span></button>
+          <h4 class="resume-learn-title">Why the prompt is written this way</h4>
+          <ol class="resume-learn">
+            <li><b>First say who it is and what it should do.</b>One sentence on the role and the goal tells the AI where to put its effort.</li>
+            <li><b>Give it real material, then draw a line.</b>You supply the experience and it is told not to invent any; where something is missing, it flags it and asks you.</li>
+            <li><b>Give it something to match against.</b>With the job description, it knows which experience to put first.</li>
+            <li><b>Say exactly what you want back.</b>Format, length, a comparison table, and finally a check of its own work.</li>
+          </ol>
+          <p class="resume-source">The approach follows the open-source project career-ops: one true master draft, adapted for each job.<a class="u-link" href="../resume-method/">See the full method ↗</a></p>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== 说明与条款 ===== -->
+  <div class="view inner legal-view" id="view-legal" data-view-name="legal" hidden>
+    <section class="legal-head" data-bg="#FFFDFB" data-theme="light">
+      <h1 class="display legal-title">Notes and terms</h1>
+      <p class="legal-meta">Prototype version · October 2026 · will be updated before the official launch</p>
+    </section>
+    <div class="legal-body">
+      <section id="privacy" aria-labelledby="privacy-title">
+        <h2 id="privacy-title">Privacy</h2>
+        <p>Onbloom Island currently has no accounts and no sign-in. We don't collect your name, email or any other personal information.</p>
+        <p>Notes and saved items you keep under “Mine”, and answers you write under “Study together”, are stored only in this device's browser (local storage) and are never uploaded to any server. Clear your browser data or switch devices and they are gone.</p>
+        <p>The site has no analytics, ads or third-party tracking code.</p>
+      </section>
+      <section id="terms" aria-labelledby="terms-title">
+        <h2 id="terms-title">Terms of use</h2>
+        <p>The content here is for learning and reference and is not professional advice. Each piece says what has and hasn't been tried; please judge by your own situation.</p>
+        <p>The prompt templates are original first drafts written by us; you can copy them into the AI tool of your choice. The site itself runs no AI and makes no promises about the output.</p>
+        <p>Please only put material you understand, and have the right to use, into the templates.</p>
+      </section>
+      <section id="sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Sources and copyright</h2>
+        <p>The introductions, mind maps and analysis on the bookshelf, and the AI chronicle, are our own interpretations. Copyright in the originals belongs to their authors or institutions; every book links to its author or publisher and every chronicle entry cites its original source, and the original always takes precedence.</p>
+        <p>The illustrations and comic are original works of this site, made with the help of AI image tools. Shi, Lu and Atuo are editorial personas, not AI assistants.</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer tex-blue cut">
+  <div class="footer-main">
+    <!-- The page reads like a letter: the hero opens with a dedication, the footer closes and signs it. -->
+    <div class="footer-letter">
+      <p class="footer-closing display lines" aria-label="We gather here, carrying the wisdom of the past and hope for what comes next.">
+        <span class="line"><span>We gather here,</span></span>
+        <span class="line l2"><span>carrying the wisdom of the past,</span></span>
+        <span class="line l3"><span>and hope for what comes next<em class="dot">.</em></span></span>
+      </p>
+      <a class="wordmark wordmark--big footer-sign" href="#hero" aria-label="Onbloom Island · Back to top"><svg class="logo-huayu mark--draw" viewBox="-4 0 218 100" role="img" aria-label="Onbloom Island" data-reveal><use href="#huayu"/></svg><span class="wordmark-text">Onbloom Island</span></a>
+    </div>
+    <div class="footer-side">
+      <p class="footer-ps"><span>Appendix</span><a class="link-big footer-cta" href="#/together" data-cursor="Study together">Bring a question<span class="dot">.</span></a></p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#/ai">Chronicle</a><a href="#/library">Bookshelf</a><a href="#/prompts">Prompts</a>
+        <a href="#/together">Study together</a><a href="#/notes">Mine</a><a href="../resume-method/">Résumé</a><a href="../comic-v3/">Comic</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<div class="legal-bar">
+  <span>© 2026 Onbloom Island</span>
+  <a href="#/legal">Privacy</a>
+  <a href="#/legal">Terms of use</a>
+  <a href="#/legal">Sources and copyright</a>
+  <a class="end" href="#hero">Back to top ↑</a>
+</div>
+
+<dialog id="searchDialog" class="search-dialog" aria-labelledby="searchLabel">
+  <div class="dialog-top"><span class="cap" id="searchLabel">What are you looking for?</span><button type="button" class="close-dialog" data-close aria-label="Close search">×</button></div>
+  <label class="search-field">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg>
+    <input id="searchInput" type="search" placeholder="Try “Transformer”, “Claude” or “marketing”" aria-label="Search the chronicle, books and prompt templates" autocomplete="off">
+  </label>
+  <div id="searchResults" class="search-results" aria-live="polite"></div>
+</dialog>
+
+<dialog id="readerDialog" class="reader-dialog" aria-labelledby="readerTitle">
+  <div class="dialog-top"><span class="cap" id="readerEyebrow"></span><button type="button" class="close-dialog" data-close aria-label="Close reader">×</button></div>
+  <article class="reader-article">
+    <h1 id="readerTitle" class="reader-title" tabindex="-1"></h1>
+    <div id="readerBody"></div>
+  </article>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

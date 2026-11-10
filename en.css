@@ -1,0 +1,10 @@
+/* English page only (en/index.html): English runs longer than Chinese, so a few places get more room. */
+html[lang="en"] .hero-title { font-size: clamp(32px, 4vw, 66px); }
+
+@media (max-width: 760px) {
+  html[lang="en"] .hero-title { font-size: clamp(26px, 8.2vw, 40px); }
+  /* The nav scrolls sideways on a phone; keep the language switch where it can always be seen. */
+  html[lang="en"] .main-nav .lang-link { position: absolute; top: 16px; right: var(--gutter); }
+  html[lang="en"] .main-nav { gap: 16px; }
+  html[lang="en"] .main-nav a, html[lang="en"] .main-nav button { font-size: 13px; letter-spacing: .02em; }
+}
